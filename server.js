@@ -17,6 +17,7 @@ var handle = {
 
 handle.templates.URLs["/"]="index.html";
 handle.templates.URLs["/about"]="about.html";
+handle.templates.URLs["error404"]="error404.html";
 
 
 function getData(response,pathRelative){
@@ -47,7 +48,8 @@ const server = http.createServer(function(req, res){
         var pathRelative=joinPath(handle.templates,pathname);
         getData(res,pathRelative);
     }else{
-        console.log("no exist path")
+        var pathRelative=joinPath(handle.templates,"error404");
+        getData(res,pathRelative);
     }
 });
 
