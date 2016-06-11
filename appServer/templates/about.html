@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Routing NodeJS</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style>
+    body > .container{
+        padding-bottom: 5em;
+    }
+    .navbar.navbar-static-top{
+        background-color: #333;
+    }
+
+    .navbar-default .navbar-nav>li>a:hover{
+        background-color:rgba(255,255,255,0.3);
+    }
+
+    #info_content{
+        text-align: justify;
+        color:#333;
+        font-size: 1.5em;
+    }
+
+    .line{
+        height: 5px;
+        background-color:#e7e7e7;
+        margin-top: 5em;
+        margin-bottom: 1em;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    pre{
+        background-color: #333;
+        border-radius: 3px;
+        padding: .75em 1.2em;
+        font-size: .8em;
+        white-space: pre-wrap;
+        color: #f0f0f0;
+        overflow-x: auto;
+    }
+</style>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Routing NodeJS</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container">
+    <div class="wrapper-logo col-xs-12 col-sm-3">
+        <img class="col-xs-12" src="https://nickalchemist.files.wordpress.com/2015/12/node.png?w=552">
+    </div>
+    <div class="col-xs-12 col-sm-9">
+        <h2>About Node.js</h2>
+        <div id="info_content">
+            <p>
+                As an asynchronous event driven JavaScript runtime, Node is designed to build scalable network applications. In the following "hello world" example, many connections can be handled concurrently. Upon each connection the callback is fired, but if there is no work to be done Node is sleeping.
+            </p>
+
+<pre>
+<code class="language-javascript">
+<span class="token keyword">const</span> http <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'http'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> hostname <span class="token operator">=</span> <span class="token string">'127.0.0.1'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> port <span class="token operator">=</span> <span class="token number">3000</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> server <span class="token operator">=</span> http<span class="token punctuation">.</span><span class="token function">createServer</span><span class="token punctuation">(</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    res<span class="token punctuation">.</span>statusCode <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+    res<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">'Content-Type'</span><span class="token punctuation">,</span> <span class="token string">'text/plain'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    res<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token string">'Hello World\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+server<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>port<span class="token punctuation">,</span> hostname<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`Server running at http://</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>hostname<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>port<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code>
+</pre>
+
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="row line"></div>
+    </div>
+    <div class="col-xs-12">
+        <h2>Node.js Foundation Survey Result</h2>
+        <div id="info_content">
+            <p>
+                With over 3.5 million users and an annual growth rate of 100 percent, Node.js is emerging as a universal platform used for web applications, IoT, and enterprise. The Node.js User Survey report features insights on emerging trends happening in this massive community that serves as a leading indicator on trends like microservices architectures, real-time web applications, Internet of Things (IoT). The report paints a detailed picture of the technologies that are being used, in particular, with Node.js in production and language preferences (current and future) for front end, back end and IoT developers.
+            </p>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <h2>Node.js Drives Major Scale and Reliability at Uber</h2>
+        <div id="info_content">
+            <p>
+                The ride-sharing platform Uber has an ambitious goal: to make transportation as reliable as running water, everywhere and for everyone. Learn why Uber chose Node.js to power its platform and massive-matching system.
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
