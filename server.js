@@ -20,13 +20,13 @@ handle.templates.URLs["/about"]="about.html";
 handle.templates.URLs["error404"]="error404.html";
 
 
-function getData(response,pathRelative){
+function getData(response,pathRelative,statusCode){
     var extFile=path.extname(pathRelative);
     var Content_Type=mimeTypes.getType(extFile);
 
     fs.readFile(pathRelative, function(error, data){
         if(!error){
-            response.writeHead(200, {"Content-Type":Content_Type});
+            response.writeHead(statusCode, {"Content-Type":Content_Type});
             response.write(data, "utf8");
             response.end();
         }
@@ -43,10 +43,10 @@ function joinPath(handleType,pathname){
 function router(res,pathname){
     if(typeof handle.templates.URLs[pathname] === 'string'){
         var pathRelative=joinPath(handle.templates,pathname);
-        getData(res,pathRelative);
+        getData(res,pathRelative,200);
     }else{
         var pathRelative=joinPath(handle.templates,"error404");
-        getData(res,pathRelative);
+        getData(res,pathRelative,404);
     }
 }
 
