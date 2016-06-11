@@ -40,10 +40,7 @@ function joinPath(handleType,pathname){
     return pathRelative;
 }
 
-const server = http.createServer(function(req, res){
-    var pathname = url.parse(req.url).pathname;
-    console.log("-GET [" + pathname + "]");
-
+function router(res,pathname){
     if(typeof handle.templates.URLs[pathname] === 'string'){
         var pathRelative=joinPath(handle.templates,pathname);
         getData(res,pathRelative);
@@ -51,6 +48,12 @@ const server = http.createServer(function(req, res){
         var pathRelative=joinPath(handle.templates,"error404");
         getData(res,pathRelative);
     }
+}
+
+const server = http.createServer(function(req, res){
+    var pathname = url.parse(req.url).pathname;
+    console.log("-GET [" + pathname + "]");
+    router(res,pathname);
 });
 
 server.listen(port, hostname, function() {
