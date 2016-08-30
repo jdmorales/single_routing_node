@@ -1,6 +1,7 @@
 # single routing with NodeJS
 
-This application is example about how develop a single web server,  using only nodeJS modules.
+This application is example about how develop a single web server,  using only nodeJS modules. 
+It was built with following this steps. Each step is a branch:
 
 ####Steps:
 ###### 1. Hello world:
